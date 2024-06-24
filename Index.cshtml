@@ -1,0 +1,59 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    ViewData["NoContainer"] = true;
+}
+
+<<div class="py-5" style="background-color: #08618d;">
+    <div class="container text-white">
+        <div class="row">
+            <div class="col-md-6 pb-3">
+                <h1 class="display-2"><strong>KhumaloCraft</strong></h1>
+                <br />
+                <p>
+                    We have the best craft work hand made in the world. 
+                    We have a large selection of products from different categories.
+                    You will definitely find what makes you happy.
+                </p>
+                <br />
+                <form class="d-flex" action="/MyworkPage">
+                    <input class="form-control me-2" name="search" placeholder="Search by Title ">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+
+            </div>
+            <div class="col-md-6">
+                <img src="/images/products/craft9.jpg" class="img-fluid rounded" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="py-5">
+<div class="container">
+    <h1 class="pb-5 text-center display-5"><strong>Newest crafts</strong></h1>
+    <div class="row">
+        @foreach (var item in Model.listNewestCrafts)
+        {
+            <div class="col-lg-3 col-sm-6 my-2">
+                <div class="card shadow text-center h-100 book-item">
+                    <img src="/images/products/@item.ImageFileName" class="card-img-top p-3" alt="..." />
+                    <div class="card-body">
+                        <h4>@item.Title</h4>
+                        <p>, Category: @item.Category</p>
+                        <h4>@(item.Price)R</h4>
+                        <a class="btn btn-primary btn-sm my-2" href="/ProductDetails?id=@(item.Id)" role="button">Details</a>
+                        <button type="button" class="btn btn-warning btn-sm my-2" onclick="addToCart(this, @item.Id)">
+                            Add to Cart <i class="bi bi-cart4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+</div>
+
+
